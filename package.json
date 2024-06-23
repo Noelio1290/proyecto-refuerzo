@@ -1,0 +1,21 @@
+{
+  "name": "proyecto-refuerzo",
+  "version": "1.0.0",
+  "description": "prouect_with-LitElement",
+  "main": "index.js",
+  "scripts": {
+    "serve": "es-dev-server --app-index demo/index.html --node-resolve --watch --open",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint --fix ."
+  },
+  "author": "TU_PADRE_SANTO",
+  "license": "ISC",
+  "dependencies": {
+    "es-dev-server": "^2.1.0",
+    "lit": "^3.1.4"
+  }
+}
