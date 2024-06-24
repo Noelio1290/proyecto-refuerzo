@@ -46,9 +46,17 @@ export class ProyectoRefuerzo extends LitElement {
     console.log(this.input);
   }
   onInput(e) {
-    console.log(e.detail.value);
-    this.input = e.detail.value;
-    console.log(this.input);
+    const { value, index } = e.detail;
+    console.log(value);
+    console.log(index);
+    if (index !== undefined && index !== -1) {
+      this.list = this.list.map((item, i) => i === index ? value : item);
+    } else {
+      this.input = value;
+    }
+  }
+  removeItem(index) {
+    this.list = this.list.filter((_, i) => i !== index);
   }
   render() {
     return html`  
@@ -56,9 +64,11 @@ export class ProyectoRefuerzo extends LitElement {
         <h1>Proyecto Refuerzo: ${this.prop}</h1>
         <input-component @ingreso-de-datos="${this.onInput}" .value="${this.input}"></input-component>
         <button-component .label="${this.label}" @botton-click="${this.onButtonClick}"></button-component>
-        <p> La prop es: ${this.prop} y el label es: ${this.label} el input es: ${this.input} y la lista es: ${this.list} </p>
         <div>
-          ${this.list.map(item => html`<p>${item}</p>`)}
+          ${this.list.map((item, index) => html`
+            <input-component .value="${item}" .index="${index}" @ingreso-de-datos="${this.onInput}"></input-component>
+            <button @click="${() => this.removeItem(index)}">Eliminar</button>
+          `)}
         </div>
       </div>`
     ;
